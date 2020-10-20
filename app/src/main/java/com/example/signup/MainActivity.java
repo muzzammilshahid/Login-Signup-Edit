@@ -1,8 +1,5 @@
 package com.example.signup;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
-import pk.codebase.requests.HttpError;
 import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
@@ -196,48 +195,42 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("BHAI SOMETHINGH WAS BROKEN");
             return;
         }
-        /**String input = "First Name: " + firstname.getEditText().getText().toString();
-        input += "\n";
-        input += "Last Name: " + lastname.getEditText().getText().toString();
-        input += "\n";
-        input += "Password: " + password.getEditText().getText().toString();
-        input += "\n";
-        input += "Confirm Password: " + confirmpassword.getEditText().getText().toString();
-        input += "\n";
-        input += "Email: " + email.getEditText().getText().toString();
-        input += "\n";
-        input += "Username: " + username.getEditText().getText().toString();
-        input += "\n";
-        input += "Phone: " + phone.getEditText().getText().toString();
-        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();**/
+//        String input = "First Name: " + firstname.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Last Name: " + lastname.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Password: " + password.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Confirm Password: " + confirmpassword.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Email: " + email.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Username: " + username.getEditText().getText().toString();
+//        input += "\n";
+//        input += "Phone: " + phone.getEditText().getText().toString();
+//        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
         String first = firstname.getEditText().getText().toString();
         String last = lastname.getEditText().getText().toString();
         String pass = password.getEditText().getText().toString();
-        String cpass = confirmpassword.getEditText().getText().toString();
+//        String cpass = confirmpassword.getEditText().getText().toString();
         String emaill = email.getEditText().getText().toString();
         String uname = username.getEditText().getText().toString();
         String number = phone.getEditText().getText().toString();
 
 
         HttpRequest request = new HttpRequest();
-        request.setOnResponseListener(new HttpRequest.OnResponseListener() {
-            @Override
-            public void onResponse(HttpResponse response) {
-                if (response.code == HttpResponse.HTTP_OK) {
-                    System.out.println(response.toJSONObject());
-                    Intent intent = new Intent(MainActivity.this,First_Screen.class);
-                    startActivity(intent);
-                    Toast.makeText(MainActivity.this,"Signup Successfully",Toast.LENGTH_SHORT).show();
-                }
+        request.setOnResponseListener(response -> {
+            if (response.code == HttpResponse.HTTP_OK) {
+                System.out.println(response.toJSONObject());
+                Intent intent = new Intent(MainActivity.this,First_Screen.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this,"Signup Successfully",Toast.LENGTH_SHORT).show();
             }
         });
-        request.setOnErrorListener(new HttpRequest.OnErrorListener() {
-            @Override
-            public void onError(HttpError error) {
-                System.out.println("THERE WWSDS SD S D");
-                System.out.println(error.reason);
-                // There was an error, deal with it
-            }
+        request.setOnErrorListener(error -> {
+            System.out.println("THERE WWSDS SD S D");
+            System.out.println(error.reason);
+            // There was an error, deal with it
         });
 
         JSONObject json;
@@ -250,8 +243,8 @@ public class MainActivity extends AppCompatActivity {
             json.put("username",uname);
             json.put("mobile",number);
             request.post("http://codebase.pk:7000/api/users/", json);
-        } catch (JSONException ignore) {
-            ignore.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
     public void onChooseFile(View view){
