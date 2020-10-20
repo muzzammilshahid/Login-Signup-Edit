@@ -188,7 +188,9 @@ public class First_Screen extends AppCompatActivity {
     }
 
 
-
+    public void nothinng(){
+        System.out.println("pushed in other branch");
+    }
 
 
 //    private void check() {
