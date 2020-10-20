@@ -186,11 +186,7 @@ public class First_Screen extends AppCompatActivity {
         button.setOnClickListener(v -> recreate());
         dialog.show();
     }
-
-
-    public void nothinng(){
-        System.out.println("pushed in other branch");
-    }
+    
 
 
 //    private void check() {
