@@ -6,49 +6,32 @@
 
 
 
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:text="Email"
-        android:textColor="#070707"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="150dp"/>
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginHorizontal="5dp"
+        android:padding="5dp"
         android:id="@+id/text_input_email"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
-        android:layout_toRightOf="@+id/username"
         android:layout_marginTop="150dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/pass"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:text="Password"
-        android:textColor="#070707"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/username"
-        android:gravity="center"/>
+
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginHorizontal="5dp"
+        android:padding="5dp"
         android:id="@+id/text_input_password"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/pass"
         android:layout_below="@+id/text_input_email"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -58,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:layout_below="@+id/pass"
+        android:layout_below="@+id/text_input_password"
         android:layout_centerHorizontal="true"/>
 
     <TextView
