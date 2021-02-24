@@ -21,11 +21,11 @@ public class Edit extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
-        tv = (EditText) findViewById(R.id.tv);
-        tv1 = (EditText) findViewById(R.id.tv1);
-        tv2 = (EditText) findViewById(R.id.tv2);
-        tv3 = (EditText) findViewById(R.id.tv3);
-        tv4 = (EditText) findViewById(R.id.tv4);
+        tv =findViewById(R.id.tv);
+        tv1 =findViewById(R.id.tv1);
+        tv2 =findViewById(R.id.tv2);
+        tv3 =findViewById(R.id.tv3);
+        tv4 =findViewById(R.id.tv4);
         tv.setText(getIntent().getStringExtra("firstname"));
         tv1.setText(getIntent().getStringExtra("lastname"));
         tv2.setText(getIntent().getStringExtra("email"));
