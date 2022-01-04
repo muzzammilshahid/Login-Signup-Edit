@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout firstname;
     private TextInputLayout lastname;
     private TextInputLayout password;
-    private TextInputLayout confirmpassword;
-    private TextInputLayout  email;
+    private TextInputLayout confirmPassword;
+    private TextInputLayout email;
     private TextInputLayout username;
     private TextInputLayout phone;
     Button btn;
@@ -64,31 +64,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        btn= findViewById(R.id.btn2);
+        btn = findViewById(R.id.btn2);
         myImg = findViewById(R.id.img);
 
 
-
-
-
-
-
-
-
-    firstname= findViewById(R.id.text_input_fname);
-    lastname= findViewById(R.id.text_input_lname);
-    password= findViewById(R.id.text_input_password);
-    confirmpassword = findViewById(R.id.text_input_repassword);
-    email= findViewById(R.id.text_input_email);
-    username= findViewById(R.id.text_input_username);
-    phone = findViewById(R.id.text_input_phone);
+        firstname = findViewById(R.id.text_input_fname);
+        lastname = findViewById(R.id.text_input_lname);
+        password = findViewById(R.id.text_input_password);
+        confirmPassword = findViewById(R.id.text_input_repassword);
+        email = findViewById(R.id.text_input_email);
+        username = findViewById(R.id.text_input_username);
+        phone = findViewById(R.id.text_input_phone);
 
 
     }
 
 
-    private boolean validatefirstname(){
+    private boolean validateFirstname() {
         String emailInput = firstname.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             firstname.setError("Field can't be empty");
@@ -99,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validatelastname(){
+    private boolean validateLastname() {
         String emailInput = lastname.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             lastname.setError("Field can't be empty");
@@ -109,50 +101,48 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
+
     private boolean validatePassword() {
         String passwordInput = password.getEditText().getText().toString().trim();
         if (passwordInput.isEmpty()) {
             password.setError("Field can't be empty");
             return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
             password.setError("Password too weak");
             return false;
 
-        }
-        else {
+        } else {
             password.setError(null);
             return true;
         }
     }
+
     private boolean validateConfirmPassword() {
         String passwordInput1 = password.getEditText().getText().toString().trim();
-        String passwordInput = confirmpassword.getEditText().getText().toString().trim();
+        String passwordInput = confirmPassword.getEditText().getText().toString().trim();
         System.out.println(passwordInput1);
         System.out.println(passwordInput);
         if (passwordInput.isEmpty()) {
-            confirmpassword.setError("Field can't be empty");
+            confirmPassword.setError("Field can't be empty");
             return false;
-        }
-        else if (!passwordInput1.equals(passwordInput)){
-            confirmpassword.setError("Password doesnot match");
+        } else if (!passwordInput1.equals(passwordInput)) {
+            confirmPassword.setError("Password doesn't match");
             return false;
         } else {
-            confirmpassword.setError(null);
+            confirmPassword.setError(null);
             return true;
         }
     }
+
     private boolean validateEmail() {
         String emailInput = email.getEditText().getText().toString().trim();
         if (emailInput.isEmpty()) {
             email.setError("Field can't be empty");
             return false;
-        }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             email.setError("Enter a valid Email Address");
             return false;
-        }
-        else {
+        } else {
             email.setError(null);
             return true;
         }
@@ -166,13 +156,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (usernameInput.length() > 15) {
             username.setError("Username too long");
             return false;
-        }
-        else if (!USER_NAME.matcher(usernameInput).matches()){
-            username.setError("Pattren doesnot match");
+        } else if (!USER_NAME.matcher(usernameInput).matches()) {
+            username.setError("Pattern doesn't match");
             return false;
 
-        }
-        else {
+        } else {
             username.setError(null);
             return true;
         }
@@ -190,9 +178,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void confirmInput(View v) {
-        if (!validatefirstname() || !validatelastname() || !validatePassword() ||
+        if (!validateFirstname() || !validateLastname() || !validatePassword() ||
                 !validateConfirmPassword() || !validateEmail() || !validateUsername() || !validatePhone()) {
-            System.out.println("BHAI SOMETHINGH WAS BROKEN");
             return;
         }
 //        String input = "First Name: " + firstname.getEditText().getText().toString();
@@ -222,13 +209,12 @@ public class MainActivity extends AppCompatActivity {
         request.setOnResponseListener(response -> {
             if (response.code == HttpResponse.HTTP_OK) {
                 System.out.println(response.toJSONObject());
-                Intent intent = new Intent(MainActivity.this,First_Screen.class);
+                Intent intent = new Intent(MainActivity.this, First_Screen.class);
                 startActivity(intent);
-                Toast.makeText(MainActivity.this,"Signup Successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Signup Successfully", Toast.LENGTH_SHORT).show();
             }
         });
         request.setOnErrorListener(error -> {
-            System.out.println("THERE WWSDS SD S D");
             System.out.println(error.reason);
             // There was an error, deal with it
         });
@@ -238,16 +224,17 @@ public class MainActivity extends AppCompatActivity {
             json = new JSONObject();
             json.put("firstname", first);
             json.put("lastname", last);
-            json.put("password",pass);
-            json.put("email",emaill);
-            json.put("username",uname);
-            json.put("mobile",number);
+            json.put("password", pass);
+            json.put("email", emaill);
+            json.put("username", uname);
+            json.put("mobile", number);
             request.post("http://codebase.pk:7000/api/users/", json);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    public void onChooseFile(View view){
+
+    public void onChooseFile(View view) {
         CropImage.activity().start(MainActivity.this);
 
     }
@@ -255,17 +242,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode==RESULT_OK){
-                mImageUrl= result.getUri();
+            if (resultCode == RESULT_OK) {
+                mImageUrl = result.getUri();
                 myImg.setImageURI(mImageUrl);
-            }
-            else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
                 Exception e = result.getError();
-                Toast.makeText(this,"Possible Error is"+e,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Possible Error is" + e, Toast.LENGTH_SHORT).show();
 
             }
 

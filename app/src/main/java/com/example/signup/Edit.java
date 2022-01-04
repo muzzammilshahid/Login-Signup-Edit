@@ -15,17 +15,18 @@ import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
 public class Edit extends AppCompatActivity {
-    EditText tv,tv1,tv2,tv3,tv4;
+    EditText tv, tv1, tv2, tv3, tv4;
     Button btn;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
-        tv =findViewById(R.id.tv);
-        tv1 =findViewById(R.id.tv1);
-        tv2 =findViewById(R.id.tv2);
-        tv3 =findViewById(R.id.tv3);
-        tv4 =findViewById(R.id.tv4);
+        tv = findViewById(R.id.tv);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
         tv.setText(getIntent().getStringExtra("firstname"));
         tv1.setText(getIntent().getStringExtra("lastname"));
         tv2.setText(getIntent().getStringExtra("email"));
@@ -50,12 +51,12 @@ public class Edit extends AppCompatActivity {
                     String uname1 = tv4.getText().toString();
                     String mobile = tv3.getText().toString();
                     String email = tv2.getText().toString();
-                    Intent intent = new Intent(Edit.this,AfterLogin.class);
+                    Intent intent = new Intent(Edit.this, AfterLogin.class);
                     intent.putExtra("firstname", first1);
                     intent.putExtra("lastname", last1);
                     intent.putExtra("username", uname1);
-                    intent.putExtra("mobile",mobile);
-                    intent.putExtra("email",email);
+                    intent.putExtra("mobile", mobile);
+                    intent.putExtra("email", email);
                     startActivity(intent);
 
                 }
@@ -70,9 +71,9 @@ public class Edit extends AppCompatActivity {
                 json.put("firstname", first);
                 json.put("lastname", last);
                 //json.put("password",pass);
-                json.put("email",emaill);
-                json.put("username",uname);
-                json.put("mobile",number);
+                json.put("email", emaill);
+                json.put("username", uname);
+                json.put("mobile", number);
             } catch (JSONException ignore) {
                 return;
             }

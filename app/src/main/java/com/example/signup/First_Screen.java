@@ -28,18 +28,19 @@ import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
 public class First_Screen extends AppCompatActivity {
-    private TextInputLayout email;
+    private TextInputLayout emailInput;
     private TextInputLayout password;
     private Button button;
     private boolean mHasNetwork;
     Dialog dialog;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        System.out.println("Inside On Create");
-        email = findViewById(R.id.text_input_email);
+
+        emailInput = findViewById(R.id.text_input_email);
         password = findViewById(R.id.text_input_password);
         TextView textView = findViewById(R.id.signup);
         button = findViewById(R.id.btn);
@@ -51,7 +52,6 @@ public class First_Screen extends AppCompatActivity {
         button.setOnClickListener(v -> {
 
 
-
             progressDialog = new ProgressDialog(First_Screen.this);
             progressDialog.show();
             progressDialog.setContentView(R.layout.progress_dialog);
@@ -60,10 +60,7 @@ public class First_Screen extends AppCompatActivity {
             );
 
 
-
-
-
-            String emaill = email.getEditText().getText().toString();
+            String emaill = emailInput.getEditText().getText().toString();
             String pass = password.getEditText().getText().toString();
 
 
@@ -79,19 +76,17 @@ public class First_Screen extends AppCompatActivity {
                         String mobile = result.getString("mobile");
                         String email = result.getString("email");
                         Intent intent = new Intent(First_Screen.this, AfterLogin.class);
-                        intent.putExtra("firstname",firstname);
-                        intent.putExtra("lastname",lastname);
-                        intent.putExtra("username",username);
-                        intent.putExtra("mobile",mobile);
-                        intent.putExtra("email",email);
+                        intent.putExtra("firstname", firstname);
+                        intent.putExtra("lastname", lastname);
+                        intent.putExtra("username", username);
+                        intent.putExtra("mobile", mobile);
+                        intent.putExtra("email", email);
                         startActivity(intent);
-                        Toast.makeText(First_Screen.this,"Login Successfully",Toast.LENGTH_LONG).show();
-                    }
-                    else{
+                        Toast.makeText(First_Screen.this, "Login Successfully", Toast.LENGTH_LONG).show();
+                    } else {
                         Toast.makeText(First_Screen.this, "Invalid Email or Password", Toast.LENGTH_LONG).show();
                     }
-                }
-                catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             });
@@ -129,7 +124,7 @@ public class First_Screen extends AppCompatActivity {
         }
         boolean isWifiConn = false;
         boolean isMobileConn = false;
-        for (Network network: connMgr.getAllNetworks()) {
+        for (Network network : connMgr.getAllNetworks()) {
             NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 isWifiConn |= networkInfo.isConnected();
@@ -145,10 +140,10 @@ public class First_Screen extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void trackNetworkState() {
-         mHasNetwork = isNetworkConnected();
-         if (!mHasNetwork) {
-             showDialog();
-         }
+        mHasNetwork = isNetworkConnected();
+        if (!mHasNetwork) {
+            showDialog();
+        }
 
         ConnectivityManager cm = getSystemService(ConnectivityManager.class);
         NetworkRequest.Builder builder = new NetworkRequest.Builder();
@@ -186,7 +181,6 @@ public class First_Screen extends AppCompatActivity {
         button.setOnClickListener(v -> recreate());
         dialog.show();
     }
-    
 
 
 //    private void check() {
